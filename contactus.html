@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Contact Us | Empowering the nation School</title>
+    <link rel="stylesheet" href="contactus.css">
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1> <img src="img/School Logo.png" alt="School Logo" id="logo">Empowering the nation School</h1>
+            </div>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Contact Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get in Touch with Us</h1>
+            <p>We'd love to hear from you! Whether you have a question about our school, admissions, or anything else, our team is ready to answer all your questions.</p>
+        </div>
+    </section>
+
+   <!-- Contact Form & Info -->
+<section class="contact-info">
+    <div class="container">
+        <div class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message here..." rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Initialize EmailJS with your user ID (sign up and get your ID at emailjs.com)
+    (function() {
+        emailjs.init("your-user-id"); // Replace "your-user-id" with your EmailJS user ID
+    })();
+
+    // Add event listener to the form
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting the default way
+
+        // Collect form data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        // Send form data via EmailJS
+        emailjs.send("your-service-id", "your-template-id", {
+            name: name,
+            email: email,
+            message: message
+        })
+        .then(function(response) {
+            alert("Message sent successfully!");
+        }, function(error) {
+            alert("Failed to send the message. Please try again later.");
+        });
+    });
+</script>
+
+
+                <!-- Contact Details -->
+                <div class="contact-details">
+                    <h2>Contact Information</h2>
+                    <p>Email: preciousradebe@gmail.com</p>
+                    <p>Phone: +27 52 254 2540</p>
+                    <p>Address: 123 Learning Avenue, Cape Town, South Africa</p>
+                    <div class="map-container">
+                        <!-- Embedded Google Map -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d257245.3940641681!2d18.331307949999998!3d-33.9248685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc676b80b86b6d%3A0x14dfe661d715445!2sCape%20Town%2C%20South%20Africa!5e0!3m2!1sen!2sin!4v1636034568741!5m2!1sen!2sin" 
+                                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Empowering the nationl. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

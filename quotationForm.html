@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Course Quotation Form</title>
+    <link rel="stylesheet" href="quotationForm.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1> <img src="img/School Logo.png" alt="School Logo" id="logo">Empowering the nation School</h1>
+            </div>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Quotation Form Section -->
+    <section class="quotation-form-section">
+        <div class="container">
+            <h1>Request a Course Quotation</h1>
+            <p>Fill in your details and select the courses you're interested in. Click "Calculate Fee" to see the estimated total.</p>
+
+            <form id="quotationForm" class="quotation-form">
+                <!-- Contact Details -->
+                <div class="form-group">
+                    <label for="name">Full Name and Surame</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Course Selection (Checkboxes) -->
+                <div class="form-group">
+                    <label for="courses">Select Courses</label>
+                    <div class="course-list">
+                        <label>
+                            <input type="checkbox" name="courses" value="500" data-course="HTML for Beginners">
+                            First Aid - R1 500
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="600" data-course="CSS Fundamentals">
+                            Sewing - R1 500
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="700" data-course="JavaScript for Web Development">
+                            Landscapping - R1 500
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="800" data-course="Responsive Web Design">
+                            Life Skills - R1 500
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="600" data-course="CSS Fundamentals">
+                            Cooking - R750
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="700" data-course="JavaScript for Web Development">
+                            Child Miniding - R750
+                        </label>
+                        <label>
+                            <input type="checkbox" name="courses" value="800" data-course="Responsive Web Design">
+                            Carden maintenance - R750
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Calculate Fee Button -->
+                <div class="form-group">
+                    <button type="button" class="submit-btn" onclick="calculateTotal()">Calculate Fee</button>
+                </div>
+
+                <!-- Display Total Quotation -->
+                <div class="form-group">
+                    <p id="totalFee">Total Quoted Fee: R0.00</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function calculateTotal() {
+            // Get all checked courses
+            const selectedCourses = document.querySelectorAll('input[name="courses"]:checked');
+            let total = 0;
+            let courseList = [];
+
+            // Calculate the total fee based on selected courses
+            selectedCourses.forEach((course) => {
+                total += parseFloat(course.value);
+                courseList.push(course.dataset.course);
+            });
+
+            // Apply discount based on the number of selected courses
+            let discount = 0;
+            if (selectedCourses.length === 2) {
+                discount = total * 0.05;  // 5% discount for two courses
+            } else if (selectedCourses.length === 3) {
+                discount = total * 0.10;  // 10% discount for three courses
+            } else if (selectedCourses.length > 3) {
+                discount = total * 0.15;  // 15% discount for more than three courses
+            }
+
+            // Calculate VAT (15%)
+            const VAT = 0.15;
+            const vatAmount = (total - discount) * VAT;
+            const finalTotal = (total - discount) + vatAmount;
+
+            // Display the total fee with VAT and discount
+            document.getElementById('totalFee').textContent = `Total Quoted Fee (incl. 15% VAT and discounts): R${finalTotal.toFixed(2)}`;}
+    </script>
+
+</body>
+</html>
